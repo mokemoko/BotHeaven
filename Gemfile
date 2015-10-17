@@ -51,6 +51,10 @@ gem 'dotenv-rails'
 
 gem 'sqlite3', group: "sqlite3"
 
+# for hipchat
+gem 'hipchat'
+gem 'grape'
+
 group :production do
   gem 'pg'
   # gem 'rails_12factor'
