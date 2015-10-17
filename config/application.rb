@@ -25,5 +25,8 @@ module BotsHeaven
       # Use Rspec for test engine.
       g.test_framework :rspec
     end
+
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
   end
 end
