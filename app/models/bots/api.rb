@@ -33,6 +33,12 @@ module Bots
       @slack ||= Bots::Apis::Slack.new(@bot)
     end
 
+    # Get Hipchat API.
+    # @return [Bots::Apis::Hipchat] hipchat api.
+    def hipchat
+      @slack ||= Bots::Apis::Hipchat.new(@bot)
+    end
+
     # Get Storage API.
     # @return [Bots::Apis::Storage] storage api.
     def storage
