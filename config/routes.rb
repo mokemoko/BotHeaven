@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   resource :sessions, only: [:new, :destroy]
 
-  mount Webhook::API => '/webhook'
+  mount Hipchat::API => '/api'
 end

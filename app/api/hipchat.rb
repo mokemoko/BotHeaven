@@ -1,4 +1,4 @@
-module Webhook
+module Hipchat
   class API < Grape::API
     format :json
 
@@ -18,13 +18,25 @@ module Webhook
         end
       end
     end
-    post do
+    post 'webhook' do
       # TODO: create message module
       message = params[:item][:message]
       Bot.where(channel: params[:item][:room][:id]).pluck(:id).each do |bot_id|
         JobDaemon.enqueue(JobDaemons::BotJob.new(bot_id, 'onTalk', [message[:from][:id].to_s, message[:message]]))
       end
 
+      {}
+    end
+
+    desc 'Hipchat Add-On Callback'
+    params do
+      requires :capabilitiesUrl, type: String
+      requires :oauthId, type: String
+      requires :oauthSecret, type: String
+      optional :roomId, type: String
+    end
+    post 'callback' do
+      p params
       {}
     end
   end
